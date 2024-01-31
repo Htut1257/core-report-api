@@ -17,7 +17,7 @@ import org.springframework.data.relational.core.mapping.Table;
 @Data
 @Builder
 @Table("comp_info")
-public class CompInfo {
+public class CompanyInfo {
     @Id
     private String compCode;
     private String compName;
@@ -29,12 +29,12 @@ public class CompInfo {
     private LocalDateTime compStartDate;
     private LocalDateTime compEndDate;
     private Integer compBranchCount;
-    private LocalDateTime createdDate;
-    private LocalDateTime updatedDate;
-    private String createdBy;
-    private String updatedBy;
+    private LocalDateTime createDate;
+    private LocalDateTime updateDate;
+    private String createBy;
+    private String updateBy;
     private String compOwnerName;
     private String compContactPerson;
     private String hostName;
-    private String token;
+  //  private String token;
 }

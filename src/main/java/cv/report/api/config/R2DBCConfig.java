@@ -60,4 +60,9 @@ public class R2DBCConfig extends AbstractR2dbcConfiguration {
         return TransactionalOperator.create(transactionManager);
     }
 
+    @Bean
+    String JWTSecretKey() {
+        return environment.getProperty("jwt.secret");
+    }
+
 }

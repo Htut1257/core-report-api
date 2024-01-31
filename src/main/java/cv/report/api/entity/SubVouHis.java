@@ -4,7 +4,6 @@
  */
 package cv.report.api.entity;
 
-import java.time.LocalDateTime;
 import lombok.Builder;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
@@ -16,16 +15,18 @@ import org.springframework.data.relational.core.mapping.Table;
  */
 @Data
 @Builder
-@Table("subscription")
-public class Subscription {
+@Table("sub_vou_his")
+public class SubVouHis {
 
     @Id
-    private String subCode;
-    private String subName;
+    private String subHisId;
+    private String subVou;
+    private String compCode;
+    private String subId;
     private Double price;
-    private Integer subType;
-    private Boolean active;
-    private Integer status;
-    private LocalDateTime createdDate;
-    private LocalDateTime updatedDate;
+    private Integer month;
+    private Double disAmount;
+    private Double disPercent;
+    private Double amount;
+
 }

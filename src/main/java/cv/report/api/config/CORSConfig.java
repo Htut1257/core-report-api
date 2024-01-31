@@ -20,7 +20,7 @@ public class CORSConfig implements WebFluxConfigurer {
         corsRegistry.addMapping("/**")
                 .allowedOrigins("*")
                 .allowCredentials(false)
-                .allowedMethods("GET", "PUT", "POST", "DELETE")
+                .allowedMethods("GET", "PUT", "POST", "DELETE","OPTION")
                 .allowedHeaders("*");
     }
 }

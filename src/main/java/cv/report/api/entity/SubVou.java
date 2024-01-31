@@ -16,16 +16,22 @@ import org.springframework.data.relational.core.mapping.Table;
  */
 @Data
 @Builder
-@Table("subscription")
-public class Subscription {
+@Table("sub_vou")
+public class SubVou {
 
     @Id
-    private String subCode;
-    private String subName;
-    private Double price;
-    private Integer subType;
-    private Boolean active;
-    private Integer status;
+    private String subVou;
+    private String userCode;
+    private String subPlanCode;
+    private Double amount;
+    private Double disAmount;
+    private Double disPercent;
+    private Double balance;
+    private Integer vouStatus;
+    private LocalDateTime vouDate;
+    private Boolean deleted;
+    private String createdBy;
+    private String updatedBy;
     private LocalDateTime createdDate;
     private LocalDateTime updatedDate;
 }

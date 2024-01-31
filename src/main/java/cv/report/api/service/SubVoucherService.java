@@ -5,7 +5,7 @@
 package cv.report.api.service;
 
 import cv.report.api.common.CommonUtil;
-import cv.report.api.entity.Subscription;
+import cv.report.api.entity.SubVou;
 import java.time.LocalDateTime;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ import reactor.core.publisher.Mono;
  */
 @Service
 @RequiredArgsConstructor
-public class SubscriptionService {
+public class SubVoucherService {
 
     private final R2dbcEntityTemplate template;
     private final DatabaseClient dbClient;
@@ -29,30 +29,29 @@ public class SubscriptionService {
     @Autowired
     private SequenceService seqService;
 
-    public Flux<Subscription> getAllSubscribePlan() {
-        return template.select(Subscription.class).all();
+    Flux<SubVou> searchSubVoucher() {
+        return Flux.just(null);
     }
 
-    public Mono<Subscription> saveSubscribe(Subscription model) {
-        String subCode = model.getSubCode();
-        String period = CommonUtil.toDateStr(CommonUtil.getTodayDate(), "yyyy");
+    Mono<SubVou> saveSubVou(SubVou model) {
+        String subCode = model.getSubPlanCode();
+        String period = CommonUtil.toDateStr(CommonUtil.getTodayDate(), "MMyyyy");
         if (CommonUtil.isNullOrEmpty(subCode)) {
-            return seqService.getSequence("SubPlan", period)
+            return seqService.getSequence("SubVou", period)
                     .flatMap(seq -> {
-                        String seqNo = CommonUtil.generateSequence(5, seq.getSeqNo()) + period;
-                        model.setSubCode(seqNo);
-                        return insert(model);
+                        String seqNo = CommonUtil.generateSequence(5, seq.getSeqNo());
+                        return insertSubVou(model);
                     });
         }
-        return update(model);
+        return updateSubVou(model);
     }
 
-    public Mono<Subscription> insert(Subscription model) {
+    Mono<SubVou> insertSubVou(SubVou model) {
         model.setCreatedDate(LocalDateTime.now());
         return template.insert(model);
     }
 
-    public Mono<Subscription> update(Subscription model) {
+    Mono<SubVou> updateSubVou(SubVou model) {
         model.setUpdatedDate(LocalDateTime.now());
         return template.update(model);
     }

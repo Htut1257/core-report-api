@@ -4,11 +4,18 @@
  */
 package cv.report.api.controller;
 
+import cv.report.api.entity.Subscription;
+import cv.report.api.service.SubscriptionService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 /**
  *
@@ -20,14 +27,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/subscribe")
 public class SubscriptionController {
 
-    @GetMapping("/get-subscribe")
-    public String getAllUser() {
-        return "Hello Back.";
+    @Autowired
+    private SubscriptionService subService;
+
+    @GetMapping("/get-all-subscribe")
+    public Flux<Subscription> getAllSubscriptionPlan() {
+        return subService.getAllSubscribePlan();
     }
 
-    @GetMapping("/save-subscribe")
-    public String saveUser() {
-        return "Hello Back.";
+    @PostMapping("/save-subscribe")
+    public Mono<Subscription> saveUser(@RequestBody Subscription model) {
+        return subService.saveSubscribe(model);
     }
-
+    
 }

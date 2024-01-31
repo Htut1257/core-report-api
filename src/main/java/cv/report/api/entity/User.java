@@ -4,10 +4,16 @@
  */
 package cv.report.api.entity;
 
+import java.time.LocalDateTime;
+import lombok.Builder;
+import lombok.Data;
+
 /**
  *
  * @author myoht
  */
+@Builder
+@Data
 public class User {
 
     private String userCode;
@@ -17,5 +23,9 @@ public class User {
     private String email;
     private String password;
     private String address;
+    private Boolean active;
     private Integer status;
+    private LocalDateTime createdDate;
+    private LocalDateTime updatedDate;
+
 }
